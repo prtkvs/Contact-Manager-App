@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  username String
+  email    String    @unique
+  password String
+  // Relation: One User → Many Contacts :
+  contacts Contact[]
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  location  String?
+  email     String
+  createdAt DateTime @default(now())
+
+  // Foreign Key to User
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+}
+
