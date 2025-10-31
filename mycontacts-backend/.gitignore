@@ -1,3 +1,44 @@
 /node_modules
 .env
 /generated/prisma
+
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Prisma
+prisma/dev.db
+prisma/*-journal
+prisma/migrations/**/migration.sql.bak
+*.db
+*.db-journal
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE configs
+.vscode/
+.idea/
+
+# Build outputs (if using build tools later)
+dist/
+build/
+
+# Lock for package manager swaps (rare edge case)
+pnpm-lock.yaml
