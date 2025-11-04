@@ -17,6 +17,7 @@ const getContacts = asyncHandler(async (req, res) => {
 // CREATE NEW CONTACT - POST /api/contacts
 const createContact = asyncHandler(async (req, res) => {
   console.log("Request body:", req.body);
+  console.log("User from token:", req.user);
   const { name, email, phone, location } = req.body;
 
   if (!name || !email || !phone) {

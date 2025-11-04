@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // 3. Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
-  console.log("Hashed Password:", hashedPassword);
+  // console.log("Hashed Password:", hashedPassword);
   res.json({message: "User registration successful"});
 
   // 4. Create new user in DB with hashed password
@@ -61,6 +61,8 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  console.log("Login attempt with:", { email, password });
+
   // Check missing fields
   if (!email || !password) {
     res.status(400);
@@ -78,6 +80,8 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid credentials");
   }
 
+  console.log("User found:", { id: user.id, email: user.email });
+
   // Compare password
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
@@ -85,11 +89,13 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid credentials");
   }
 
-  // Generate token (expires in 1 minute)
+  console.log("Password match successful");
+
+  // Generate token
   const token = jwt.sign(
     { userId: user.id, email: user.email, username: user.username },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "15m" }
+    { expiresIn: "300m" }
   );
 
   res.status(200).json({
