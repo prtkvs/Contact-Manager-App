@@ -12,11 +12,11 @@ const port = process.env.PORT || 5000;
 // });
 const allowedOrigins = [
   "http://localhost:3000",
-  // "https://contact-manager-app-flame.vercel.app"
+  "https://contacthub-manager.vercel.app"
 ];
 app.use(
   cors({
-    origin: true,
+    origin: allowedOrigins,
     credentials: true
   })
 );
