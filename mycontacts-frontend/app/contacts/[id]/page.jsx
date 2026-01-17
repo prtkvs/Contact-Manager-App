@@ -30,7 +30,7 @@ useEffect(() => {
 
   const handleBack = () => router.push("/dashboard");
 
-  const handleEdit = () => router.push(`/contacts/${id}/edit`);
+  const handleEdit = () => router.push(`/dashboard/edit/${id}`);
 
   const handleDelete = async () => {
     try {

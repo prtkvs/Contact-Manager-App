@@ -31,8 +31,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // 3. Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
-  // console.log("Hashed Password:", hashedPassword);
-  res.json({message: "User registration successful"});
 
   // 4. Create new user in DB with hashed password
   const newUser = await prisma.user.create({
